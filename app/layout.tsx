@@ -12,7 +12,7 @@ import Player from "@/components/Player";
 const font = Figtree({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Spotify Pro",
+  title: "Soundfy",
   description: "Listen to music!",
 };
 
@@ -27,7 +27,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <Head>
-        <link rel="shortcut icon" href="./spotify_icon.ico" type="image/x-icon" />
+        <link rel="icon" href="./spotify.ico" />
       </Head>
       <body className={font.className}>
         <ToasterProvider />

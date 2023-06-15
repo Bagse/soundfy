@@ -1,13 +1,13 @@
 "use client";
 
-import useAuthModal from "@/hooks/useAuthModal";
-import { useUser } from "@/hooks/useUser";
-
-import { useSessionContext } from "@supabase/auth-helpers-react";
-import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
+import { useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
-import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
+import { useSessionContext } from "@supabase/auth-helpers-react";
+
+import { useUser } from "@/hooks/useUser";
+import useAuthModal from "@/hooks/useAuthModal";
 
 interface LikeButtonProps {
   songId: string;
@@ -16,11 +16,10 @@ interface LikeButtonProps {
 const LikeButton: React.FC<LikeButtonProps> = ({ songId }) => {
   const router = useRouter();
   const { supabaseClient } = useSessionContext();
-
   const authModal = useAuthModal();
   const { user } = useUser();
 
-  const [isLiked, setIsLiked] = useState(false);
+  const [isLiked, setIsLiked] = useState<boolean>(false);
 
   useEffect(() => {
     if (!user?.id) {
@@ -72,14 +71,22 @@ const LikeButton: React.FC<LikeButtonProps> = ({ songId }) => {
         toast.error(error.message);
       } else {
         setIsLiked(true);
-        toast.success("Liked!");
+        toast.success("Liked");
       }
     }
+
     router.refresh();
   };
 
   return (
-    <button onClick={handleLike} className="hover:opacity-75 transition">
+    <button
+      className="
+        cursor-pointer 
+        hover:opacity-75 
+        transition
+      "
+      onClick={handleLike}
+    >
       <Icon color={isLiked ? "#22c55e" : "white"} size={25} />
     </button>
   );
