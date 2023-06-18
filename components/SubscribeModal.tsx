@@ -72,7 +72,7 @@ const SubscribeModal: React.FC<SubscribeModalProps> = ({ products }) => {
       <div>
         {products.map((product) => {
           if (!product.prices?.length) {
-            return <div key={product.id}></div>;
+            return <div key={product.id}>No prices available</div>;
           }
 
           return product.prices.map((price) => (
@@ -97,7 +97,7 @@ const SubscribeModal: React.FC<SubscribeModalProps> = ({ products }) => {
   return (
     <Modal
       title="Only for premium users"
-      description="Listen to music with Soundfy Premium"
+      description="Listen to music with Spotify Premium"
       isOpen={subscribeModal.isOpen}
       onChange={onChange}
     >
